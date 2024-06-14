@@ -3,6 +3,10 @@
 // Descr: Rock Paper Scissors Game 
 // Coded in JS
 
+// Game Variables
+let humanScore = 0;
+let computerScore = 0;
+
 // Get Input
 // Validate Choice
 function getHumanChoice() {
@@ -33,25 +37,50 @@ function getComputerChoice() {
 
     switch(num) {
         case 1:
-            response="Rock";
+            response="rock";
             break;
         case 2:
-            response="Scissors";
+            response="scissors";
             break;
         case 3:
-            response="Paper";
+            response="paper";
             break;
     }
 
     return response;
 }
 
-console.log(getComputerChoice());
-console.log(getHumanChoice());
-
 // Compare Results
 // Same Choice is Tie
 // Rock wins against Scissors
 // Scissors against Paper
 // Paper against Rock
+function playRound(humanChoice, computerChoice) {
+
+    // Check Tie First
+    if(humanChoice === computerChoice) {
+        
+    } else {
+
+        // Check Who Wins 
+        if(humanChoice === "rock") {
+            computerChoice != "paper" ? humanScore++ : computerScore++;
+        } else if (humanChoice === "paper") {
+            computerChoice != "scissors" ? humanScore++ : computerScore++;
+        } else if (humanChoice === "scissors") {
+            computerChoice != "rock" ? humanScore++ : computerScore++;
+        }
+    }  
+}
+
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+console.log("You chose: " + humanSelection);
+console.log("The Computer chose: " + computerSelection);
+playRound(humanSelection, computerSelection);
+
+console.log("Your Score: " + humanScore);
+console.log("Computer's Score: " + computerScore);
 
