@@ -7,6 +7,9 @@
 let humanScore = 0;
 let computerScore = 0;
 
+let humanSelection;
+let computerSelection;
+
 // Get Input
 // Validate Choice
 function getHumanChoice() {
@@ -93,14 +96,27 @@ function playRound(humanChoice, computerChoice) {
     
 }
 
+function playGame() {
+    for(let i = 0; i < 5; i++) {
+        humanSelection = getHumanChoice();
+        computerSelection = getComputerChoice();
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+        console.log("You chose " + humanSelection);
+        console.log("The Computer chose " + computerSelection);
 
-console.log("You chose " + humanSelection);
-console.log("The Computer chose " + computerSelection);
-playRound(humanSelection, computerSelection);
+        playRound(humanSelection, computerSelection);
 
-console.log("Your Score: " + humanScore);
-console.log("Computer's Score: " + computerScore);
+        console.log("Your Score: " + humanScore);
+        console.log("Computer's Score: " + computerScore);
+    }
+
+    if(humanScore > computerScore) {
+        console.log("AI Uprising??? Not with you on team human");
+    } else {
+        console.log("Uh oh, the AI is coming for you!")
+    }
+}
+
+playGame();
+
 
