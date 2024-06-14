@@ -50,6 +50,20 @@ function getComputerChoice() {
     return response;
 }
 
+// Helper function to manage win state to eliminate excess code in playRound()
+function processRound(winner) {
+    if(winner) {
+        humanScore++;
+        console.log("You win!");
+        console.log(humanSelection + " beats " + computerSelection);
+    } else {
+        computerScore++;
+        console.log("You lose!");
+        console.log(humanSelection + " is beat by " + computerSelection);
+    }
+    
+}
+
 // Compare Results
 // Same Choice is Tie
 // Rock wins against Scissors
@@ -57,28 +71,34 @@ function getComputerChoice() {
 // Paper against Rock
 function playRound(humanChoice, computerChoice) {
 
+    let didUserWin = false;
+
     // Check Tie First
     if(humanChoice === computerChoice) {
-        
+        console.log("You Tied");
     } else {
 
         // Check Who Wins 
         if(humanChoice === "rock") {
-            computerChoice != "paper" ? humanScore++ : computerScore++;
+            if(computerChoice != "paper") {didUserWin = true;}
         } else if (humanChoice === "paper") {
-            computerChoice != "scissors" ? humanScore++ : computerScore++;
+            if(computerChoice != "scissors") {didUserWin = true;}
         } else if (humanChoice === "scissors") {
-            computerChoice != "rock" ? humanScore++ : computerScore++;
+            if(computerChoice != "rock") {didUserWin = true;}
         }
+
+        processRound(didUserWin);
     }  
+
+    
 }
 
 
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
-console.log("You chose: " + humanSelection);
-console.log("The Computer chose: " + computerSelection);
+console.log("You chose " + humanSelection);
+console.log("The Computer chose " + computerSelection);
 playRound(humanSelection, computerSelection);
 
 console.log("Your Score: " + humanScore);
